@@ -1,0 +1,167 @@
+/* Meyerweb CSS Reset v2.0 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+/**********************************************************************
+                            DEFAULT STYLES
+***********************************************************************/
+
+h1{
+    font-size: 36px;
+    font-weight: bold;
+    background-color: rgb(83, 147, 220);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+h2{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid darkblue;
+    margin-bottom: 10px;
+}
+
+article div{
+    font-size: 32px;
+    font-weight: bold;
+    background-color: rgb(43, 168, 226);
+    border: 2px solid rgb(31, 132, 232);
+
+    /* you can add fkexbox inside of a grid (or grid inside of flexbox) */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/**********************************************************************
+                            GRID STYLES 
+***********************************************************************/
+section.one article{
+/* like flex display, you need to have a grid container with display:grid */
+display: grid;
+
+/* tell the grid how many columns it should have 
+fr stands for fraction, and it means to use a part of the available space*/
+grid-template-columns: 200px 2fr 1fr;
+
+/* you can also control rows - but in this example the third row wont have a difind height */
+grid-template-rows: 120px 120px;
+}
+
+
+section.two article{
+    display: grid;
+
+    /* with grid, you have an explicit grid (what you define) and an implicit grid (what the browser automatically fills out) */
+
+    grid-template-columns: repeat(4, 1fr);
+
+    /* for rows, you can tell each row to automatically take on a property, no matter how many */
+    grid-auto-rows: 120px;
+
+    /* the the grid to automatically fill spaces left by elements that were to big */
+    grid-auto-flow: dense;
+}
+
+section.two div:nth-child(1){
+    /* you can tell a cell to start and end at a row or column */
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(2){
+    grid-column-start: 3;
+    grid-column-end: 5;
+
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(6){
+    grid-column-start: 1;
+
+    /* you can use span to tell it to stectch across a specific number of columns */
+    grid-column-end: span 4;
+}
+
+section.three article{
+    display:grid;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: 120px;
+    grid-auto-rows: dense;
+
+    /* you can put space between rows and columns with gap */
+    gap: 1em 1em;
+}
+
+section.three div:nth-child(2){
+    /* another way to move grid cells is with order
+    by default everything has an order of 0 - anything with a higher order comes later, anything with a lower order comes earlier */
+    order: 1;
+}
+
+section.three div:nth-child(5){
+    grid-area: 2 / 1 / span 2 / span 2;
+    /* this is equivilent to writing:
+    grid-column-start:2;
+    grid-column-end: span 2;
+    grid-row-start: 1;
+    grid-row-end: span 2; */
+}
+
